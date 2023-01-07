@@ -4,7 +4,6 @@ use std::fs::File;
 use std::io::{BufRead, BufReader, Write};
 use std::path::Path;
 use regex::Regex;
-use num_format::{english_number_system, Locale};
 
 
 fn main() -> Result<(), Box<dyn Error>> {
@@ -13,8 +12,8 @@ fn main() -> Result<(), Box<dyn Error>> {
     let placeholder_values = read_placeholder_values(&placeholders)?;
     let num_combinations = calculate_num_combinations(&placeholder_values);
     let num_modified_dorks = num_combinations * dork_types.len();
-    let formatted_num = english_number_system(num_modified_dorks, Locale::en).unwrap();
-    println!("Generating {} modified dorks...", formatted_num);
+    // let formatted_num = english_number_system(num_modified_dorks, Locale::en).unwrap();
+    println!("Generating {} modified dorks...", num_modified_dorks);
     let mut output_file = File::create("combinations.txt")?;
     let mut modified_dorks = HashSet::new();
 
